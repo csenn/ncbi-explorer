@@ -1,0 +1,14 @@
+
+.search-content-container {
+	padding: 0px 20px 20px 20px;
+	position: absolute;
+	top: $headerHeight;
+	left: $resultsListWidth;;
+	right:0;
+	bottom:0;
+	overflow-y: scroll;
+
+	.selected-result-header {
+		height: 64px;
+	}
+}

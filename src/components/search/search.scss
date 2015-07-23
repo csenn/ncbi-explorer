@@ -1,0 +1,23 @@
+
+$headerHeight: 64px;
+$dbListWidth: 200px;
+$resultsListWidth: 40%;
+
+$dbColorMid: #FFE082;
+$dbColorLight: #FFECB3;
+$advancedColor: white;
+
+
+@import 'header/header';
+@import 'dbList/dbList';
+@import 'searchResults/searchResults';
+@import 'advancedQuery/advancedQuery';
+@import 'selectedResult/selectedResult';
+
+.search {
+	position: absolute;
+	top: 0;
+	left:0;
+	right:0;
+	bottom:0;
+}

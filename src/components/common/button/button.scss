@@ -1,0 +1,94 @@
+
+$btnGreyBackground: linear-gradient(rgb(245,245,245),rgb(235,235,235));
+
+
+$lightBlueButtonColor:#2293B8;
+$darkBlueButtonColor:#0584ae;
+$darkerBlueButtonColor:#046383;
+
+
+$lightYellowButtonColor:#fffae8;
+$darkYellowButtonColor:#FFF2C2;
+$darkerYellowButtonColor:#fff8e0;
+
+.grey-btn{
+	background: $btnGreyBackground;
+	background-color: rgb(235,235,235);
+	color:rgb(100,100,100);
+	box-shadow: 0 0 0px 1px rgb(240,240,240);
+	font-size: 14px;
+  	padding: 11px 15px;
+  	border: 0;
+  	box-shadow: 0 1px 1px 0 #c8c8c8;
+  	outline: 0;
+	&:active {
+	 	background: rgb(235,235,235);
+	 	box-shadow: inset 0 0 4px 2px rgb(225,225,225);
+	 	outline: 0;
+	}
+	&:hover{
+		color:rgb(100,100,100);
+		background: rgb(235,235,235);
+	}
+	&[disabled]{
+		color:rgb(100,100,100);
+		background: rgb(235,235,235);
+	}
+	&[disabled]:hover{
+		color:rgb(100,100,100);
+		background: rgb(235,235,235);
+	}
+	&[disabled]:active{
+		color:rgb(100,100,100);
+		background: rgb(235,235,235);
+		box-shadow: none;
+	}
+}
+
+
+.blue-btn{
+	background: linear-gradient($lightBlueButtonColor,$darkBlueButtonColor);
+	background-color: $darkBlueButtonColor;
+	color:white;
+	&:active {
+	 	background: $lightBlueButtonColor;
+	 	box-shadow: inset 0 0 4px 2px $darkerBlueButtonColor;
+	}
+	&:hover{
+		background: $darkBlueButtonColor;
+	}
+	&[disabled]{
+		background: $lightBlueButtonColor;
+	}
+	&[disabled]:hover{
+		background: $lightBlueButtonColor;
+	}
+	&[disabled]:active{
+		background: $lightBlueButtonColor;
+		box-shadow: none;
+	}
+}
+
+.yellow-btn{
+	background: linear-gradient($lightYellowButtonColor,$darkYellowButtonColor);
+	background-color: $darkYellowButtonColor;
+	color:rgb(100,100,100);
+	&:active {
+	 	background: $lightYellowButtonColor;
+	 	box-shadow: inset 0 0 4px 2px $darkerYellowButtonColor;
+	}
+	&:hover{
+		color:rgb(100,100,100);
+		background: $darkYellowButtonColor;
+	}
+	&[disabled]{
+		background: $lightYellowButtonColor;
+	}
+	&[disabled]:hover{
+		background: $lightYellowButtonColor;
+	}
+	&[disabled]:active{
+		background: $lightYellowButtonColor;
+		box-shadow: none;
+	}
+}

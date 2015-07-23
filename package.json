@@ -1,0 +1,45 @@
+{
+  "name": "ncbi",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "react": "~0.13.3",
+    "express": "~4.13.1",
+    "react-router": "~0.13.3",
+    "material-ui": "~0.10.0",
+    "axios": "~0.5.4",
+    "react-tap-event-plugin": "~0.1.7",
+    "lodash": "~3.10.0",
+    "xml2js": "~0.4.9"
+  },
+  "devDependencies": {
+    "node-libs-browser": "~0.5.2",
+    "webpack": "~1.10.1",
+    "babel-core": "~5.6.18",
+    "babel-loader": "~5.3.1",
+    "gulp": "~3.9.0",
+    "style-loader": "~0.12.3",
+    "css-loader": "~0.15.3",
+    "node-sass": "~3.2.0",
+    "sass-loader": "~1.0.2",
+    "jest": "~0.1.40",
+    "jest-cli": "~0.4.15",
+    "babel-jest": "~5.3.0",
+    "webpack-dev-server": "~1.10.1"
+  },
+  "scripts": {
+    "test": "jest --verbose",
+    "start": "webpack-dev-server --content-base dist/ --colors"
+  },
+  "jest": {
+    "rootDir": "./src",
+    "scriptPreprocessor": "../node_modules/babel-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/mocks/"
+    ]
+  }
+}

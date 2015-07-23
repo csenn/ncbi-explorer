@@ -1,0 +1,89 @@
+.header {
+	position: relative;
+    box-shadow:0 1px 2px 0 rgba(180,180,180, .5);
+    height: $headerHeight;
+    position: relative;
+
+	.left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: $dbListWidth;
+        background: $dbColorMid;
+        padding: 19px 0 20px 12px;
+        box-sizing: border-box;
+        z-index:1;
+        .db-name {
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+            .menu-icon {
+                margin-right: 10px;
+                font-size: 20px;
+            }
+            .db-label {
+                vertical-align: top;
+                padding-top: 1px;
+                display: inline-block;
+            }
+        }
+	}
+
+	.right {
+        position: absolute;
+        top: 0;
+        left: $dbListWidth;
+        right:0;
+        bottom: 0;
+        padding-left: 15px;
+        .advanced-query {
+            display: inline-block;
+            margin-top: 12px;
+            margin-right: 20px;
+            float:right;
+            font-size: 15px;
+/*            opacity: 0;
+            transition: opacity .25s ease-in-out;
+            -moz-transition: opacity .25s ease-in-out;
+            -webkit-transition: opacity .25s ease-in-out;*/
+             color: rgb(90,90,90);
+             cursor: pointer;
+            .arrow-icon {
+                position: relative;
+                top: 7px;
+                margin-left: 10px;
+                color: rgb(50,50,50);
+                font-size: 24px;
+            }
+        }
+/*        &:hover {
+            .advanced-query {
+                opacity: 1;
+            }
+        }*/
+	}
+}
+
+
+.search-icon {
+    position: relative;
+    top: 7px;
+    left: 3px;
+    color: rgb(130,130,130);
+}
+
+.search-input {
+	width: 45%;
+	height: 100%;
+	margin-right: 8px;
+	margin-left: 8px;
+	font-size: 16px;
+    margin-left: 10px;
+	/*box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	border: 1px solid rgb(230,230,230);*/
+    border:0;
+	/*padding-left: 10px;*/
+	transition: box-shadow .45s,border-color .45s ease-in-out;
+}
