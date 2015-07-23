@@ -1,7 +1,7 @@
 
 /*
-TODO: Scss Loader - move to css file
-http://www.jonathan-petitcolas.com/2015/05/15/howto-setup-webpack-on-es6-react-application-with-sass.html
+    TODO: Scss Loader - move to css file
+    http://www.jonathan-petitcolas.com/2015/05/15/howto-setup-webpack-on-es6-react-application-with-sass.html
 */
 
 module.exports = {
