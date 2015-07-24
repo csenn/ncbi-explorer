@@ -9,19 +9,19 @@ let ThemeManager = new Mui.Styles.ThemeManager();
 
 class App extends React.Component {
 
-	getChildContext() {
-		return {
-			muiTheme: ThemeManager.getCurrentTheme()
-		};
-	}
+    getChildContext() {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        };
+    }
 
-	render() {
-		return <Search/>;
-	}
+    render() {
+        return <Search/>;
+    }
 }
 
 App.childContextTypes = {
-	muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
 };
 
 
@@ -29,18 +29,18 @@ export default App;
 
 
 /*
-	Notes
+    Notes
 
-	MEDGEN
-	http://www.ncbi.nlm.nih.gov/portal/utils/autocomp.fcgi?dict=medgen_disease_name&q=abd
+    MEDGEN
+    http://www.ncbi.nlm.nih.gov/portal/utils/autocomp.fcgi?dict=medgen_disease_name&q=abd
 
-	PUBMED
-	http://www.ncbi.nlm.nih.gov/portal/utils/autocomp.fcgi?dict=pm_related_queries_2&q=cancer
+    PUBMED
+    http://www.ncbi.nlm.nih.gov/portal/utils/autocomp.fcgi?dict=pm_related_queries_2&q=cancer
 
 
-	//Dictionaries -> There must be more
-	medgen_disease_name
-	pm_related_queries_2
-	mesh_suggestions
+    //Dictionaries -> There must be more
+    medgen_disease_name
+    pm_related_queries_2
+    mesh_suggestions
 
 */

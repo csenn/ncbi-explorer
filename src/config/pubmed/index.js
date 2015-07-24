@@ -1,26 +1,21 @@
 import {parseString} from 'xml2js'
 import ResultListItem from './components/ResultListItem'
 import SelectedResult from './components/SelectedResult'
+import xmlToJson from '../../utils/xmlToJson';
 
 var pubmed = {
 
-	name: 'pubmed',
-	displayName: 'Pub Med',
+    name: 'pubmed',
+    displayName: 'Pub Med',
 
-	components: {
-		ResultListItem: ResultListItem,
-		SelectedResult: SelectedResult
-	},
+    components: {
+        ResultListItem: ResultListItem,
+        SelectedResult: SelectedResult
+    },
 
-	parsers: {
-		efetch: function(dataBefore) {
-			var jsonResult;
-			parseString(dataBefore, { normalizeTags: true }, function(err, dataAfter) {
-				jsonResult = dataAfter;
-			});
-			return jsonResult;
-		}
-	}
+    parsers: {
+        efetch: xmlToJson
+    }
 };
 
 export default pubmed;

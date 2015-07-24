@@ -3,20 +3,20 @@ import api from '../api/api'
 
 class SelectedResultActions {
 
-	fetch(resultSummary) {
-		this.dispatch(resultSummary);
-		api.getResultDetails(resultSummary.uid)
-			.then(this.actions.fetchSuccess)
-			.catch(this.actions.fetchFail)
-	}
+    fetch(resultSummary) {
+        this.dispatch(resultSummary);
+        api.getResultDetails(resultSummary.uid)
+            .then(this.actions.fetchSuccess)
+            .catch(this.actions.fetchFail)
+    }
 
-	fetchSuccess(result) {
-		this.dispatch(result.data);
-	}
+    fetchSuccess(result) {
+        this.dispatch(result.data);
+    }
 
-	fetchFail() {
-		console.log(arguments)
-	}
+    fetchFail() {
+        console.log(arguments)
+    }
 }
 
 export default alt.createActions(SelectedResultActions);

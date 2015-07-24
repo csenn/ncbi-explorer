@@ -28,6 +28,10 @@ class SelectedResult extends React.Component {
 
 		if (!this.props.query.db) return <div></div>;
 
+		if (_.isEmpty(this.props.selectedResultDetails)) {
+			return <div></div>;
+		}
+
 		var Component = dbs[this.props.query.db.name].components.SelectedResult;
 
 		return (

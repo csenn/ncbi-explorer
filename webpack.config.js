@@ -29,5 +29,11 @@ module.exports = {
                 loaders: ['style', 'css', 'sass']
             }
         ]
+    },
+
+    devServer: {
+        contentBase: "./dist",
+        noInfo: true,
+        colors: true,
     }
 };

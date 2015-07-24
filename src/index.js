@@ -6,6 +6,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 React.render(
-	<App/>,
-	document.getElementById('app')
+    <App/>,
+    document.getElementById('app')
 );
