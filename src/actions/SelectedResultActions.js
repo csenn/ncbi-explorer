@@ -11,6 +11,7 @@ class SelectedResultActions {
     }
 
     fetchSuccess(result) {
+        if (!result) return;
         this.dispatch(result.data);
     }
 

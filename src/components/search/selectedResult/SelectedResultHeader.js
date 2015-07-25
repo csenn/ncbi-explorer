@@ -5,8 +5,8 @@ class SelectedResultHeader extends React.Component {
     render() {
         if (!this.props.selectedResultSummary) return <div></div>;
         return (
-            <div>
-                <strong>{this.props.selectedResultSummary.title}</strong>
+            <div  style={{fontSize:'22px', fontWeight:'200'}}>
+                {this.props.selectedResultSummary.title}
             </div>
         )
     }

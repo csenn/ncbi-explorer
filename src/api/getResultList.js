@@ -1,5 +1,6 @@
 import axios from 'axios'
 import QueryStore from '../stores/QueryStore'
+import dbs from '../config/dbs';
 
 
 /*
@@ -33,15 +34,23 @@ export default function() {
             var idArray = response.data.esearchresult.idlist;
             var ids = idArray.join(',');
 
-            axios.get('http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi', {
+            var options = {
                 params: {
                     db: dbName,
                     retmode: 'json',
                     id: ids
                 }
-            }).then(function(response) {
-                resolve(response.data.result);
-            }).catch(reject);
+            };
+
+            var esummary = dbs[dbName].esummary;
+            if (esummary && esummary.transformer) {
+                options.transformResponse = [ esummary.transformer ];
+            }
+
+            axios.get('http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi', options)
+                .then(function(response) {
+                    resolve(response.data.result);
+                }).catch(reject);
         }).catch(reject);
 
     });

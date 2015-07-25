@@ -8,9 +8,9 @@ import _ from 'lodash'
 
     _getArticle: function(result) {
         if (_.isEmpty(result)) return;
-        var pubmedarticle = _.first(result.pubmedarticleset.pubmedarticle);
-        var medlinecitation = _.first(pubmedarticle.medlinecitation);
-        return _.first(medlinecitation.article);
+        var pubmedarticle = _.head(result.pubmedarticleset.pubmedarticle);
+        var medlinecitation = _.head(pubmedarticle.medlinecitation);
+        return _.head(medlinecitation.article);
     },
 
 
@@ -21,7 +21,7 @@ import _ from 'lodash'
 
     getAbstractSections: function(result) {
         var article = parser._getArticle(result);
-        var abstract = _.first(article.abstract);
+        var abstract = _.head(article.abstract);
 
         return abstract.abstracttext.map(el => {
             if (_.isString(el)) {
@@ -37,12 +37,12 @@ import _ from 'lodash'
     getAuthors: function(result) {
         if (!result) return;
         var article = parser._getArticle(result);
-        var authorlist = _.first(article.authorlist);
+        var authorlist = _.head(article.authorlist);
         return authorlist.author.map(author => {
             return {
-                lastname: _.first(author.lastname),
-                forename: _.first(author.forename),
-                initials: _.first(author.initials)
+                lastname: _.head(author.lastname),
+                forename: _.head(author.forename),
+                initials: _.head(author.initials)
             }
         })
     }

@@ -4,9 +4,9 @@ import dbs from '../config/dbs';
 
 export default function(id) {
 
-    var dbName  = QueryStore.getState().query.db.name;
+    var dbName = QueryStore.getState().query.db.name;
 
-    return axios.get('http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi', {
+    var options = {
         params: {
             db: dbName,
             id: id,
@@ -14,11 +14,19 @@ export default function(id) {
             retmode: 'xml',
             restart: 15,
             sort: 'relevance'
-        },
-        transformResponse: [
-            dbs.pubmed.parsers.efetch
-        ]
-    });
+        }
+    };
+
+    var efetch = dbs[dbName].efetch;
+
+    if (efetch) {
+        if (efetch.skip) return Promise.resolve();
+        if (efetch.transformer) {
+            options.transformResponse = [ efetch.transformer ];
+        }
+    }
+
+    return axios.get('http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi', options);
 
 };
 

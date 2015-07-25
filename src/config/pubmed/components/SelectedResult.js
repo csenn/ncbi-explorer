@@ -1,6 +1,7 @@
 import './selectedResult.scss'
 
 import React from 'react'
+import _ from 'lodash'
 import parser from '../utils/parser';
 import Author from '../../common/components/Author'
 
@@ -19,7 +20,7 @@ class PubmedSelectedResult extends React.Component {
             return (
                 <div style={{marginTop: '10px'}}>
                     <div>{section.label}</div>
-                    <div>{section.text}</div>
+                    <div style={{fontSize:'15px'}}>{section.text}</div>
                 </div>
             )
         });
@@ -28,19 +29,19 @@ class PubmedSelectedResult extends React.Component {
     _getAuthors() {
         var authors = parser.getAuthors(this.props.selectedResultDetails);
         if (!authors) return '';
-        debugger;
         return authors.map(author => {
-            return <Author author={author}/>
+            return <span><Author author={author}/>, </span>
         });
     }
 
     render() {
+        if (_.isEmpty(this.props.selectedResultDetails)) return <span>Loading</span>;
         return (
             <div>
                 <div className="authors">
                     {this._getAuthors()}
                 </div>
-                <div style={{fontSize: '18px', marginTop: '20px'}}>ABSTRACT</div>
+                <div style={{fontSize: '22px', marginTop: '40px'}}>ABSTRACT</div>
                 {this._getAbstract()}
             </div>
         );

@@ -1,11 +1,43 @@
+import _ from 'lodash'
 import ResultListItem from './components/ResultListItem'
+import SelectedResult from './components/SelectedResult'
+import xmlToJson from '../../utils/xmlToJson';
+import unescapeHTML from '../../utils/unescapeHTML'
 
 var medgen = {
+
 	name: 'medgen',
-	displayName: 'MedGen',
+
+	displayName: 'Med Gen',
+
 	components: {
-		ResultListItem: ResultListItem
-	}
+		ResultListItem: ResultListItem,
+        SelectedResult: SelectedResult
+	},
+
+    esummary: {
+        transformer: function(data) {
+            var json = JSON.parse(data);
+            var result = json.result;
+
+            /* Sometimes returns an esummaryresult */
+            if (!result) return json;
+
+            Object.keys(result).forEach(key => {
+                /* Wrap XML in single root */
+                var str = '<result>' + unescapeHTML(result[key].conceptmeta) + '</result>';
+                result[key].conceptmetaJson = xmlToJson(str);
+            });
+
+            return {
+                header: result.header,
+                result: result
+            };
+        }
+    },
+
+    efetch: { skip: true }
+
 };
 
 

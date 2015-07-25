@@ -28,18 +28,11 @@ class SelectedResult extends React.Component {
 
 		if (!this.props.query.db) return <div></div>;
 
-		if (_.isEmpty(this.props.selectedResultDetails)) {
-			return <div></div>;
-		}
-
 		var Component = dbs[this.props.query.db.name].components.SelectedResult;
 
 		return (
 			<div>
-				<div className="selected-result-header">
-					{this._getHeader()}
-				</div>
-
+				{this._getHeader()}
 				<Component
 					selectedResultSummary={this.props.selectedResultSummary}
 					selectedResultDetails={this.props.selectedResultDetails}/>

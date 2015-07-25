@@ -1,4 +1,3 @@
-import {parseString} from 'xml2js'
 import ResultListItem from './components/ResultListItem'
 import SelectedResult from './components/SelectedResult'
 import xmlToJson from '../../utils/xmlToJson';
@@ -13,8 +12,8 @@ var pubmed = {
         SelectedResult: SelectedResult
     },
 
-    parsers: {
-        efetch: xmlToJson
+    efetch: {
+        transformer: xmlToJson
     }
 };
 
