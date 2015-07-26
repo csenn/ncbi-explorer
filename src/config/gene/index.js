@@ -1,5 +1,5 @@
-import ResultListItem from './components/ResultListItem'
-import SelectedResult from './components/SelectedResult'
+import ResultListItem from './components/resultListItem/ResultListItem'
+import SelectedResult from './components/selectedResult/SelectedResult'
 import xmlToJson from '../../utils/xmlToJson';
 
 var gene = {
@@ -13,7 +13,7 @@ var gene = {
     },
 
     efetch: {
-        skip: true,
+        //skip: true,
         transformer: xmlToJson
     }
 };

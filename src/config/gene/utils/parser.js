@@ -1,51 +1,73 @@
 import _ from 'lodash'
+import utils from '../../../utils/utils'
+
 
 /*
     http://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
 */
 
- const parser = {
-
-    _getArticle: function(result) {
-        if (_.isEmpty(result)) return;
-        var pubmedarticle = _.head(result.pubmedarticleset.pubmedarticle);
-        var medlinecitation = _.head(pubmedarticle.medlinecitation);
-        return _.head(medlinecitation.article);
-    },
-
+const parser = {
 
     /*
-        Provide a consistent output format
-        [{label: 'Some Label', text: 'Some Text'}]
+        Get Phenotypes
     */
 
-    getAbstractSections: function(result) {
-        var article = parser._getArticle(result);
-        var abstract = _.head(article.abstract);
-
-        return abstract.abstracttext.map(el => {
-            if (_.isString(el)) {
-                return { text: el };
-            }
-            return {
-                label: el.$.Label,
-                text: el._
-            }
-        });
+    _getGeneCommentary: function(result) {
+        return utils.getValueFromPath(result, [
+            'entrezgene-set',
+            'entrezgene',
+            'entrezgene_comments',
+            'gene-commentary'
+        ]);
     },
 
-    getAuthors: function(result) {
-        if (!result) return;
-        var article = parser._getArticle(result);
-        var authorlist = _.head(article.authorlist);
-        return authorlist.author.map(author => {
+    _getIdFromSource: function(source) {
+        return utils.getValueFromPath(source, [
+            'gene-commentary_comment',
+            'gene-commentary',
+            'gene-commentary_source',
+            'other-source',
+            'other-source_src',
+            'dbtag',
+            'dbtag_tag',
+            'object-id',
+            'object-id_str'
+        ]);
+    },
+
+    getPhenotypes: function(result) {
+        var commentary = parser._getGeneCommentary(result)
+        var foundCommentary = _.find(commentary, item => {
+            return _.first(item['gene-commentary_heading']) === 'Phenotypes';
+        });
+
+        var phenotypes = utils.getValueFromPath(foundCommentary, [
+            'gene-commentary_comment',
+            'gene-commentary'
+        ]);
+
+        return phenotypes.map(phenotype => {
+
+            var sourceCommentary = utils.getValueFromPath(phenotype, [
+                'gene-commentary_comment',
+                'gene-commentary'
+            ]);
+
+            var sources = sourceCommentary.map(source => {
+                return {
+                    name: _.first(source['gene-commentary_heading']),
+                    id: _.first(parser._getIdFromSource(source))
+                }
+            });
+
             return {
-                lastname: _.head(author.lastname),
-                forename: _.head(author.forename),
-                initials: _.head(author.initials)
+                name: _.first(phenotype['gene-commentary_heading']),
+                sources: sources
             }
-        })
+        });
+
     }
+
 }
 
 export default parser;

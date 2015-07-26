@@ -1,60 +1,30 @@
-jest.dontMock('xml2js');
-jest.dontMock('../parser');
-jest.dontMock('../../../../utils/xmlToJson');
+jest.autoMockOff() ;
 
 var parser = require('../parser');
-var xmlToJson = require('../../../../utils/xmlToJson');
+var utils = require('../../../../utils/utils');
 var efetchResult = require('./mocks/efetchResult');
-var efetchResultNotArray = require('./mocks/efetchResultNotArray');
 
 describe('pubmed - parser', function() {
 
-    describe('#_getArticle', function() {
-        var jsonResult;
-        beforeEach(function() {
-            jsonResult = xmlToJson(efetchResult);
-        });
-        it('should get thr article', function() {
-            var article = parser._getArticle(jsonResult);
-            expect(article.articletitle[0]).toContain('Incidental detection');
+    var jsonResult;
+    beforeEach(function() {
+        jsonResult = utils.xmlToJson(efetchResult);
+    });
+
+    describe('#_getGeneCommentary', function() {
+        it('should get the comments section', function() {
+            var commentary = parser._getGeneCommentary(jsonResult);
+            expect(commentary.length).toBe(396);
         });
     });
 
-    describe('#getAbstractSection - abstracttext is an array', function() {
-        var jsonResult;
-        beforeEach(function() {
-            jsonResult = xmlToJson(efetchResult);
-        });
-        it('should pull out an opinionated array', function() {
-            var abstracttext = parser.getAbstractSections(jsonResult);
-            expect(abstracttext.length).toBe(5);
-            expect(abstracttext[0].label).toBe('PURPOSE');
-            expect(abstracttext[0].text).toContain('Survivors of childhood');
-        });
-    });
-
-    describe('#getAbstractSection - abstracttext is not an array', function() {
-        var jsonResult;
-        beforeEach(function() {
-            jsonResult = xmlToJson(efetchResultNotArray);
-        });
-        it('should pull out a simple array', function() {
-            var abstracttext = parser.getAbstractSections(jsonResult);
-            expect(abstracttext.length).toBe(1);
-            expect(abstracttext[0].text).toContain('Replicating large eukaryotic genomes');
-        });
-    });
-
-
-    describe('#getAuthors', function() {
-        var jsonResult;
-        beforeEach(function() {
-            jsonResult = xmlToJson(efetchResult);
-        });
-        it('should get the authors', function() {
-            var authors = parser.getAuthors(jsonResult);
-            expect(authors[0].lastname).toBe('Sabin');
-            expect(authors[1].lastname).toBe('Santucci');
+    describe('#getPhenotypes', function() {
+        it('should get the comments section', function() {
+            var phenotypes = parser.getPhenotypes(jsonResult);
+            expect(phenotypes.length).toBe(6);
+            expect(phenotypes[0].name).toContain('Costello')
+            expect(phenotypes[0].sources[0].name).toBe('Gene Reviews');
+            expect(phenotypes[0].sources[0].id).toBe('NBK1507');
         });
     });
 
