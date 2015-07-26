@@ -1,5 +1,6 @@
-import medgen from './medgen/index.js'
-import pubmed from './pubmed/index.js'
+import gene from './gene/index'
+import medgen from './medgen/index'
+import pubmed from './pubmed/index'
 
 
 /*
@@ -8,7 +9,8 @@ import pubmed from './pubmed/index.js'
 
 export default {
     medgen: medgen,
-    pubmed: pubmed
+    pubmed: pubmed,
+    gene: gene
 }
 
 

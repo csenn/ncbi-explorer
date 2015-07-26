@@ -54,6 +54,7 @@ class SearchResults extends React.Component {
 			var ResultListItem = dbs[this.props.query.db.name].components.ResultListItem;
 			arr.push(
 				<ResultListItem
+					key={key}
 					result={searchResults[key]}
 					onClick={_.partial(this._clickResult, searchResults[key])}/>
 			);
